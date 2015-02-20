@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">StrengthHelper</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="practices_title">健身计划...</string>
+    <string name="new_practice">新建</string>
+    <string name="empty_list">当前没有计划。</string>
+    <string name="menu_practice_delete_title">删除此计划</string>
+    <string name="menu_practice_edit_title">编辑</string>
+    <string name="practice_title_empty">(无标题)</string>
+
+    <!-- fragment_practice.xml -->
+    <string name="practice_title_label">训练项目</string>
+    <string name="practice_title_hint">写下训练项目的名称</string>
+    <string name="practice_target_label">目标：</string>
+    <string name="practice_remainder_label">剩余:</string>
+    <string name="practice_remainder_over_label">超额:</string>
+    <string name="btn_go">开始记录</string>
+    <string name="btn_see">查看历史</string>
+
+    <!-- custom actionbar -->
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="tv_edit_practice">编辑活动</string>
+
+    <!-- Dialog -->
+    <string name="dialog_cancel">放弃编辑此活动?</string>
+    <string name="dialog_delete">要删除此活动吗?</string>
+    <string name="select_date">选择日期</string>
+    <string name="select_time">选择时间</string>
+    <string name="dialog_select">请选择</string>
+    <string name="et_dialog_practicesub_hint">输入本次训练的个数</string>
+    <string name="practicesub_dialog_title">本次训练个数</string>
+
+    <!--  -->
+    <string name="startdate_label">开始时间</string>
+    <string name="enddate_label">结束时间</string>
+    <string name="date_example">2015-1-30周五 13:00</string>
+    
+    <!-- expandlist  -->
+    <string name="total_num">总数: </string>
+
+</resources>

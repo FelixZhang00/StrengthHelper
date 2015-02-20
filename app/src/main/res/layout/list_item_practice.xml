@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:layout_marginLeft="4dp"
+    >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_practice_title"
+            style="@style/list_item_textview"
+            android:text="title" />
+
+        <TextView
+            android:id="@+id/tv_practice_target"
+            style="@style/list_item_textview"
+            android:text="target:" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_practice_enddate"
+            style="@style/list_item_textview"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp"
+            android:text="deadline" />
+
+        <TextView
+            android:id="@+id/tv_practice_remainder"
+          style="@style/list_item_textview"
+            android:text="remainder"
+            android:textColor="@color/red" />
+    </TableRow>
+
+</TableLayout>
