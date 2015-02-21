@@ -2,12 +2,11 @@ package felix.example.strengthhelper.model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author tmac 用于向ExpandableListvew 展示数据
  */
-public class PracticeGroup {
+public class PracticeGroup extends BaseModel {
 
 	private Date mDay; // 只要精确到天的时间信息
 	private int mTotalNum;
