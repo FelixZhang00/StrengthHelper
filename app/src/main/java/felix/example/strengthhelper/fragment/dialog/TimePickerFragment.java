@@ -1,23 +1,19 @@
-package felix.example.strengthhelper.fragment;
+package felix.example.strengthhelper.fragment.dialog;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import felix.example.strengthhelper.R;
-import felix.example.strengthhelper.utils.Logger;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.text.format.DateFormat;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 public class TimePickerFragment extends DialogFragment implements

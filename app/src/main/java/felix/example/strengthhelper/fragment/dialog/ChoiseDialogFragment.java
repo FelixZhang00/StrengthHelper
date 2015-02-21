@@ -1,21 +1,19 @@
-package felix.example.strengthhelper.fragment;
+package felix.example.strengthhelper.fragment.dialog;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import felix.example.strengthhelper.R;
+import felix.example.strengthhelper.fragment.PracticeFragment;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Chronometer;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 /**

@@ -1,4 +1,4 @@
-package felix.example.strengthhelper.fragment;
+package felix.example.strengthhelper.fragment.dialog;
 
 import android.app.Dialog;
 import android.os.Bundle;

@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +34,10 @@ import java.util.UUID;
 import felix.example.strengthhelper.R;
 import felix.example.strengthhelper.activity.PracticeActivity;
 import felix.example.strengthhelper.activity.PracticeSubActivity;
+import felix.example.strengthhelper.fragment.dialog.ChoiseDialogFragment;
+import felix.example.strengthhelper.fragment.dialog.DatePickerFragment;
+import felix.example.strengthhelper.fragment.dialog.PracticeSubDialog;
+import felix.example.strengthhelper.fragment.dialog.TimePickerFragment;
 import felix.example.strengthhelper.model.Practice;
 import felix.example.strengthhelper.model.PracticeLab;
 import felix.example.strengthhelper.utils.Logger;
@@ -45,6 +48,7 @@ public class PracticeFragment extends Fragment implements
     public static final String EXTRA_PRACTICE_ID = "felix.example.strengthhelper.practice_id";
     public static final String MODEL = "felix.example.strengthhelper.practicefragment_model";
     public static final String FROM = "felix.example.strengthhelper.practicefragment_from"; // 以什么方式打开的此fragment
+    public static final String DATE_FORMAT = "yyyy-MM-dd EEE HH:mm"; //显示的时间格式
 
     public static final int MODEL_SEE = 0;
     public static final int MODEL_EDIT = 1;
@@ -66,6 +70,7 @@ public class PracticeFragment extends Fragment implements
     private int mModel = 0; // 当前界面显示的状态
     private int mFrom = 2;
     private boolean mViewEnable = true;
+
 
     private EditText mEtTitle;
     private EditText mEtTarget;
@@ -127,6 +132,7 @@ public class PracticeFragment extends Fragment implements
         bundle.putSerializable(EXTRA_PRACTICE_ID, practiceID);
         bundle.putSerializable(MODEL, model);
         bundle.putSerializable(FROM, from);
+
         PracticeFragment fragment = new PracticeFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -137,34 +143,22 @@ public class PracticeFragment extends Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Logger.i(TAG, "onCreateView" + mPractice.getTitle());
+
         // 设置actionbar 左边的返回键
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (mModel == MODEL_EDIT) {
-                Logger.i(TAG, "MODEL_EDIT");
-                getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
-                getActivity().getActionBar().setDisplayShowCustomEnabled(true);
-
-                LayoutParams layout = new LayoutParams(
-                        LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-                getActivity().getActionBar().setCustomView(
-                        onCreateActionView(null), layout);
-
-                // 隐藏actionbar左边的图标
-                getActivity().getActionBar().setIcon(
-                        new ColorDrawable(getResources().getColor(
-                                android.R.color.transparent)));
-
-            } else if (mModel == MODEL_SEE) {
-                Logger.i(TAG, "MODEL_SEE");
-                if (NavUtils.getParentActivityName(getActivity()) != null) { // 只有当此activity设置了home才让左上角的返回键有效
-                    getActivity().getActionBar()
-                            .setDisplayHomeAsUpEnabled(true);
-                }
-                // 设置当前的fragment拥有菜单
-                setHasOptionsMenu(true);
-            }
+            setActionbar();
         }
+
+
+        View view = inflater.inflate(R.layout.fragment_practice, container,
+                false);
+
+        initView(view);
+
+        return view;
+    }
+
+    private void initView(View view) {
         mStartDate = mPractice.getStartDate();
         mEndDate = mPractice.getEndDate();
         if (mStartDate == null) {
@@ -176,8 +170,6 @@ public class PracticeFragment extends Fragment implements
             mPractice.setEndDate(mEndDate);
         }
 
-        View view = inflater.inflate(R.layout.fragment_practice, container,
-                false);
         mEtTitle = (EditText) view.findViewById(R.id.et_practice_title);
         mEtTarget = (EditText) view.findViewById(R.id.et_practice_target);
         mTvRemainder = (TextView) view.findViewById(R.id.tv_remainder);
@@ -298,8 +290,33 @@ public class PracticeFragment extends Fragment implements
 
         updateProgressBar();
         updateDate();
+    }
 
-        return view;
+    private void setActionbar() {
+        if (mModel == MODEL_EDIT) {
+            Logger.i(TAG, "MODEL_EDIT");
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+            getActivity().getActionBar().setDisplayShowCustomEnabled(true);
+
+            LayoutParams layout = new LayoutParams(
+                    LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+            getActivity().getActionBar().setCustomView(
+                    onCreateActionView(null), layout);
+
+            // 隐藏actionbar左边的图标
+            getActivity().getActionBar().setIcon(
+                    new ColorDrawable(getResources().getColor(
+                            android.R.color.transparent)));
+
+        } else if (mModel == MODEL_SEE) {
+            Logger.i(TAG, "MODEL_SEE");
+            if (NavUtils.getParentActivityName(getActivity()) != null) { // 只有当此activity设置了home才让左上角的返回键有效
+                getActivity().getActionBar()
+                        .setDisplayHomeAsUpEnabled(true);
+            }
+            // 设置当前的fragment拥有菜单
+            setHasOptionsMenu(true);
+        }
     }
 
     /**
@@ -351,8 +368,7 @@ public class PracticeFragment extends Fragment implements
      */
     private void updateDate() {
         // 2015-01-30 周五 19:22
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd EEE HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         mTvStartTime.setText(dateFormat.format(mStartDate));
         mTvEndTime.setText(dateFormat.format(mEndDate));
 
@@ -367,11 +383,13 @@ public class PracticeFragment extends Fragment implements
         if (num >= 0) {
             mTvRemainderLabel.setText(R.string.practice_remainder_label);
             mTvRemainder.setText(num + "");
-            mTvRemainder.setTextColor(Color.rgb(174, 148, 175));
+            int color = getActivity().getResources().getColor(R.color.practice_num_normal);
+            mTvRemainder.setTextColor(color);
         } else {
             mTvRemainderLabel.setText(R.string.practice_remainder_over_label);
             mTvRemainder.setText(-num + "");
-            mTvRemainder.setTextColor(Color.rgb(0, 128, 128));
+            int color = getActivity().getResources().getColor(R.color.practice_num_over);
+            mTvRemainder.setTextColor(color);
         }
 
     }
@@ -452,7 +470,7 @@ public class PracticeFragment extends Fragment implements
                 return true;
 
             case R.id.menu_practice_delete:
-                // TODO 弹出对话框，提示是否删除
+                //  弹出对话框，提示是否删除
                 showDeleteDailog();
                 return true;
             case R.id.menu_practice_edit:

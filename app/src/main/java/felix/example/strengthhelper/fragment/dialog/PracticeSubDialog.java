@@ -1,6 +1,5 @@
-package felix.example.strengthhelper.fragment;
+package felix.example.strengthhelper.fragment.dialog;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,13 +15,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.text.style.BulletSpan;
 import android.view.View;
 import android.widget.EditText;
 
 public class PracticeSubDialog extends DialogFragment {
-	public static final String EXTRA_DIALOG_PRACTICE_ID = "felix.example.strengthhelper.fragment.PracticeSubDialog.PRACTICE";
+	public static final String EXTRA_DIALOG_PRACTICE_ID = "felix.example.strengthhelper.fragment.dialog.PracticeSubDialog.PRACTICE";
 	protected static final String TAG = "PracticeSubDialog";
 	private EditText mEtNum;
 	private Practice mPractice;
