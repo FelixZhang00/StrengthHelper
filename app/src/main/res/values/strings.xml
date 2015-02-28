@@ -43,6 +43,7 @@
     <!-- expandlist  -->
     <string name="total_num">总数: </string>
     <string name="tv_practicesub_list_title">%1$s至%2$s 总数：%3$s</string>
+    <string name="empty_practicesub_list">还没有记录</string>
 
     <!--查看历史 菜单-->
     <string name="history_detatil">明细</string>

@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/empty_list" />
+            android:text="@string/empty_practicesub_list" />
 
         <ExpandableListView
             android:id="@+id/ex_list"

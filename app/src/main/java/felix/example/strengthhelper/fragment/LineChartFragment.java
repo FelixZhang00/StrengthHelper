@@ -82,7 +82,6 @@ public class LineChartFragment extends Fragment {
         mTf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
         // 生产数据
         LineData data = getChartData(36, 100);
-        getDataFromGroups();
         setupChart(mLineChart, data, getActivity().getResources().getColor(R.color.chart_bg));
     }
 
@@ -109,12 +108,16 @@ public class LineChartFragment extends Fragment {
 
         chart.setDrawBorder(false);
 
+        if (getDataFromGroups()){
+            String chart_desc = getActivity().getResources().getString(R.string.chart_desc_title,
+                    DateFormatUtil.date2String(mStartDate, "yyyy-MM-dd"),
+                    DateFormatUtil.date2String(mEndDate, "yyyy-MM-dd"));
+            chart.setDescription(chart_desc);// 数据描述
+        }else{
+            // no description text
+            chart.setDescription("");// 数据描述
+        }
 
-        String chart_desc = getActivity().getResources().getString(R.string.chart_desc_title,
-                DateFormatUtil.date2String(mStartDate, "yyyy-MM-dd"),
-                DateFormatUtil.date2String(mEndDate, "yyyy-MM-dd"));
-        // no description text
-        chart.setDescription(chart_desc);// 数据描述
 
         // enable / disable grid background
         chart.setDrawGridBackground(false); // 是否显示表格颜色
@@ -161,7 +164,7 @@ public class LineChartFragment extends Fragment {
         x.setTypeface(mTf);
 
         // animate calls invalidate()...
-        chart.animateX(2500); // 立即执行的动画,x轴
+        chart.animateX(500); // 立即执行的动画,x轴
     }
 
     /**
@@ -220,8 +223,12 @@ public class LineChartFragment extends Fragment {
     /**
      * 从mGroups中获取感兴趣的信息
      */
-    private void getDataFromGroups() {
-        mStartDate = mGroups.get(0).getDay();
-        mEndDate = mGroups.get(mGroups.size() - 1).getDay();
+    private boolean getDataFromGroups() {
+        if (mGroups!=null&&mGroups.size()>0){
+            mStartDate = mGroups.get(0).getDay();
+            mEndDate = mGroups.get(mGroups.size() - 1).getDay();
+            return true;
+        }
+        return false;
     }
 }
