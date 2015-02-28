@@ -38,8 +38,17 @@
     <string name="startdate_label">开始时间</string>
     <string name="enddate_label">结束时间</string>
     <string name="date_example">2015-1-30周五 13:00</string>
-    
+
+
     <!-- expandlist  -->
     <string name="total_num">总数: </string>
+    <string name="tv_practicesub_list_title">%1$s至%2$s 总数：%3$s</string>
 
+    <!--查看历史 菜单-->
+    <string name="history_detatil">明细</string>
+    <string name="actionbar_chart">统计</string>
+
+    <!-- 图表-->
+    <string name="chart_yVal_title">个数</string>
+    <string name="chart_desc_title">%1$s至%2$s</string>
 </resources>

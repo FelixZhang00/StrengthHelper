@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
@@ -8,8 +7,8 @@ android {
         applicationId "felix.example.strengthhelper"
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -24,4 +23,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.2'
     compile files('libs/butterknife-5.0.0.jar')
     compile files('libs/gson-2.2.1.jar')
+    compile project(':MPChartLib')
 }

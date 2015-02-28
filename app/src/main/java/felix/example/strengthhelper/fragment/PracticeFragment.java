@@ -32,6 +32,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import felix.example.strengthhelper.R;
+import felix.example.strengthhelper.activity.LineChartActivity;
 import felix.example.strengthhelper.activity.PracticeActivity;
 import felix.example.strengthhelper.activity.PracticeSubActivity;
 import felix.example.strengthhelper.fragment.dialog.ChoiseDialogFragment;
@@ -282,9 +283,11 @@ public class PracticeFragment extends Fragment implements
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PracticeSubActivity.class);
+//                Intent intent = new Intent(getActivity(), PracticeSubActivity.class);
+                Intent intent = new Intent(getActivity(), LineChartActivity.class);
                 intent.putExtra(PracticeSubActivity.EXTRA_PRACTICE_ID, mPractice.getId());
-                getActivity().startActivityForResult(intent, REQUEST_HISTORY);
+//                getActivity().startActivityForResult(intent, REQUEST_HISTORY);
+                getActivity().startActivity(intent);
             }
         });
 
@@ -292,6 +295,7 @@ public class PracticeFragment extends Fragment implements
         updateDate();
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void setActionbar() {
         if (mModel == MODEL_EDIT) {
             Logger.i(TAG, "MODEL_EDIT");
@@ -316,6 +320,9 @@ public class PracticeFragment extends Fragment implements
             }
             // 设置当前的fragment拥有菜单
             setHasOptionsMenu(true);
+        }
+        if (mPractice!=null){
+            getActivity().getActionBar().setTitle(mPractice.getTitle());
         }
     }
 

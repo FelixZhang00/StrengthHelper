@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <color name="text_grey">#8e8e8e</color>
-   <color name="white">#ffffff</color>
-   <color name="bg_yellow">#f2f1ee</color>
-   <color name="red">#AE94AF</color> 
-   <color name="green_bg">#0064c33f</color>
-   <color name="title_green_bg_color">#60CFDF</color>
+    <color name="text_grey">#8e8e8e</color>
+    <color name="white">#ffffff</color>
+    <color name="bg_yellow">#f2f1ee</color>
+    <color name="red">#AE94AF</color>
+    <color name="green_bg">#0064c33f</color>
+    <color name="title_green_bg_color">#60CFDF</color>
 
     <color name="practice_num_normal">#AE94AF</color>
     <color name="practice_num_over">#0080AF</color>
+    <color name="chart_bg">#59C7FA</color>
 </resources>

@@ -34,10 +34,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="felix.example.strengthhelper.activity.PracticeListActivity" />
         </activity>
+
+        <activity android:name=".activity.LineChartActivity"></activity>
+
         <activity android:name="felix.example.strengthhelper.activity.PracticeSubActivity" >
-              <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="felix.example.strengthhelper.activity.PracticeActivity" />
+
         </activity>
     </application>
 
