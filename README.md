@@ -17,4 +17,3 @@ Android程序：健身计划管理助手
 <img src="http://7viip0.com1.z0.glb.clouddn.com/StrengthHelperScreenshot_2015-03-04-16-35-22.png"  width="150" height="200"  style="margin-left: 0px"/>
 <img src="http://7viip0.com1.z0.glb.clouddn.com/StrengthHelperScreenshot_2015-03-04-16-35-28.png" width="150" height="200" style="margin-left: 0px"/>
 
-<img src="http://7viip0.com1.z0.glb.clouddn.com/StrengthHelperdevice-2015-02-09-102455.png" width="150" height="200" style="margin-left: 0px"/>
