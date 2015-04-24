@@ -12,7 +12,7 @@ public class DateFormatUtil {
     /**
      * 将日期转化为制定格式的字符串
      * @param date
-     * @param pattern
+     * @param pattern eg.. yyyy-MM-dd
      * @return
      */
     public static String date2String(Date date,String pattern){

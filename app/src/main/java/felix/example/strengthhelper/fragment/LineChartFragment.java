@@ -108,12 +108,13 @@ public class LineChartFragment extends Fragment {
 
         chart.setDrawBorder(false);
 
-        if (getDataFromGroups()){
+        if (getDataFromGroups() && (getPracticeTitle() != null)) {
             String chart_desc = getActivity().getResources().getString(R.string.chart_desc_title,
+                    getPracticeTitle(),
                     DateFormatUtil.date2String(mStartDate, "yyyy-MM-dd"),
                     DateFormatUtil.date2String(mEndDate, "yyyy-MM-dd"));
             chart.setDescription(chart_desc);// 数据描述
-        }else{
+        } else {
             // no description text
             chart.setDescription("");// 数据描述
         }
@@ -164,7 +165,15 @@ public class LineChartFragment extends Fragment {
         x.setTypeface(mTf);
 
         // animate calls invalidate()...
-        chart.animateX(500); // 立即执行的动画,x轴
+        chart.animateX(1500); // 立即执行的动画,x轴
+    }
+
+    /**
+     * 得到训练的名称
+     * @return
+     */
+    private String getPracticeTitle() {
+        return PracticeLab.getInstance(getActivity()).getPractice(mPracticeId).getTitle();
     }
 
     /**
@@ -224,7 +233,7 @@ public class LineChartFragment extends Fragment {
      * 从mGroups中获取感兴趣的信息
      */
     private boolean getDataFromGroups() {
-        if (mGroups!=null&&mGroups.size()>0){
+        if (mGroups != null && mGroups.size() > 0) {
             mStartDate = mGroups.get(0).getDay();
             mEndDate = mGroups.get(mGroups.size() - 1).getDay();
             return true;

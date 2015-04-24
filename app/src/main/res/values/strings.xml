@@ -51,5 +51,5 @@
 
     <!-- 图表-->
     <string name="chart_yVal_title">个数</string>
-    <string name="chart_desc_title">%1$s至%2$s</string>
+    <string name="chart_desc_title">%1$s\n%2$s至%3$s</string>
 </resources>
