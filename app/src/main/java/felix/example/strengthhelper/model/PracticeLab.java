@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import felix.example.strengthhelper.db.PracticeSQLiteHelper;
+import felix.example.strengthhelper.db.PracticeDatabaseHelper;
 import felix.example.strengthhelper.utils.GsonUtils;
 import felix.example.strengthhelper.utils.Logger;
 
@@ -32,7 +32,7 @@ public class PracticeLab extends BaseModel {
     private ArrayList<Practice> mPractices;
     private PracticeJSONSerializer mSerializer;
 
-    private PracticeSQLiteHelper mSQLiteHelper;
+    private PracticeDatabaseHelper mDBHelper;
 
     public static PracticeLab getInstance(Context context) {
         if (sPracticeLab == null) {
@@ -52,6 +52,9 @@ public class PracticeLab extends BaseModel {
             Logger.i(TAG, "load practices failed!");
             e.printStackTrace();
         }
+        Logger.i(TAG,"准备生成数据库");
+        mDBHelper = new PracticeDatabaseHelper(mAppContext);
+        mDBHelper.queryPractices();
 
     }
 
