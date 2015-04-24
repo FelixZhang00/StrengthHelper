@@ -52,9 +52,9 @@ public class PracticeLab extends BaseModel {
             Logger.i(TAG, "load practices failed!");
             e.printStackTrace();
         }
-        Logger.i(TAG,"准备生成数据库");
-        mDBHelper = new PracticeDatabaseHelper(mAppContext);
-        mDBHelper.queryPractices();
+//        Logger.i(TAG,"准备生成数据库");
+//        mDBHelper = new PracticeDatabaseHelper(mAppContext);
+//        mDBHelper.queryPractices();
 
     }
 

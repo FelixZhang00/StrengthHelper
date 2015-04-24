@@ -6,6 +6,9 @@ import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Date;
+import java.util.UUID;
+
 import felix.example.strengthhelper.model.Practice;
 import felix.example.strengthhelper.model.PracticeSub;
 import felix.example.strengthhelper.utils.Logger;
@@ -56,7 +59,7 @@ public class PracticeDatabaseHelper extends SQLiteOpenHelper {
                 "\t \"targetNum\" INTEGER,\n" +
                 "\t \"startDate\" TEXT,\n" +
                 "\t \"endDate\" TEXT,\n" +
-                "\t \"titleEmpty\" blob,\n" +
+                "\t \"titleEmpty\" INTEGER,\n" +
                 "\t \"remainder\" integer,\n" +
                 "\tPRIMARY KEY(\"_id\")\n" +
                 ");";
@@ -92,6 +95,12 @@ public class PracticeDatabaseHelper extends SQLiteOpenHelper {
         return new PracticeCursor(wrapper);
     }
 
+    public PracticeCursor queryPracticeSubs() {
+        // select * from run order by start_date asc
+        Cursor wrapper = getReadableDatabase().query(TABLE_PRACTICESUB, null, null, null, null, null, COLUMN_PRACTICESUB_DATE + " asc");
+        return new PracticeCursor(wrapper);
+    }
+
 
     public static class PracticeCursor extends CursorWrapper {
 
@@ -109,6 +118,15 @@ public class PracticeDatabaseHelper extends SQLiteOpenHelper {
                 return null;
             }
             Practice practice = new Practice();
+            practice.setId(UUID.fromString(getString(getColumnIndex(COLUMN_PRACTICE_ID))));
+            practice.setTitle(getString(getColumnIndex(COLUMN_PRACTICE_TITLE)));
+            practice.setStartDate(new Date(getString(getColumnIndex(COLUMN_PRACTICE_STARTDATE))));
+            practice.setEndDate(new Date(getString(getColumnIndex(COLUMN_PRACTICE_ENDDATE))));
+            practice.setTargetNum(getInt(getColumnIndex(COLUMN_PRACTICE_TARGETNUM)));
+            practice.setRemainder(getInt(getColumnIndex(COLUMN_PRACTICE_REMAINDER)));
+
+            boolean isEmpty = (getInt(getColumnIndex(COLUMN_PRACTICE_TITLEEMPTY)) != 0);
+            practice.setTitleEmpty(isEmpty);
 
             return practice;
         }
