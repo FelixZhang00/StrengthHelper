@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import felix.example.strengthhelper.db.PracticeSQLiteHelper;
 import felix.example.strengthhelper.utils.GsonUtils;
 import felix.example.strengthhelper.utils.Logger;
 
@@ -30,6 +31,8 @@ public class PracticeLab extends BaseModel {
     private Context mAppContext;
     private ArrayList<Practice> mPractices;
     private PracticeJSONSerializer mSerializer;
+
+    private PracticeSQLiteHelper mSQLiteHelper;
 
     public static PracticeLab getInstance(Context context) {
         if (sPracticeLab == null) {
